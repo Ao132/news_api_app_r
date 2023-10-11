@@ -1,24 +1,23 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:news_app_r/app_theme.dart';
+
 import 'package:news_app_r/api/api_manager.dart';
+import 'package:news_app_r/app_theme.dart';
+import 'package:news_app_r/tabs/tab_container.dart';
+import 'package:news_app_r/model/category.dart';
 import 'package:news_app_r/model/source_response.dart';
-import 'package:news_app_r/category/tab_container.dart';
 
 class CategoryDetails extends StatelessWidget {
   static const String routeName = 'category-details';
+  Category? category;
 
-  const CategoryDetails({super.key});
+  CategoryDetails({Key? key, this.category}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'News App',
-          style: Theme.of(context).textTheme.titleLarge,
-        ),
-      ),
       body: FutureBuilder<SourceResponse?>(
-          future: ApiManager.getSources(),
+          future: ApiManager.getSources(category?.id ?? ''),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(
@@ -32,7 +31,7 @@ class CategoryDetails extends StatelessWidget {
                   const Text('Something Went Wrong'),
                   ElevatedButton(
                       onPressed: () {
-                        ApiManager.getSources();
+                        ApiManager.getSources(category?.id ?? '');
                       },
                       child: const Text('Try Again'))
                 ],
@@ -43,7 +42,7 @@ class CategoryDetails extends StatelessWidget {
                   Text(snapshot.data?.message ?? ''),
                   ElevatedButton(
                       onPressed: () {
-                        ApiManager.getSources();
+                        ApiManager.getSources(category?.id ?? '');
                       },
                       child: const Text('Try Again'))
                 ],
@@ -54,5 +53,4 @@ class CategoryDetails extends StatelessWidget {
           }),
     );
   }
-
 }

@@ -1,8 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
-import 'package:news_app_r/category/tab_item.dart';
+import 'package:news_app_r/tabs/tab_item.dart';
 import 'package:news_app_r/model/source_response.dart';
-import 'package:news_app_r/news_container.dart';
+import 'package:news_app_r/news/news_container.dart';
 
 
 class TabContainer extends StatefulWidget {

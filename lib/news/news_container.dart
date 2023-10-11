@@ -1,11 +1,9 @@
-
-
 import 'package:flutter/material.dart';
-import 'package:news_app_r/api/api_manager.dart';
 import 'package:news_app_r/app_theme.dart';
+import 'package:news_app_r/news/news_item.dart';
+import 'package:news_app_r/api/api_manager.dart';
 import 'package:news_app_r/model/news_response.dart';
 import 'package:news_app_r/model/source_response.dart';
-import 'package:news_app_r/news_item.dart';
 
 class NewsContainer extends StatelessWidget {
   Source source;

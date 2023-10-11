@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 
 import 'package:news_app_r/api/api_constants.dart';
@@ -7,9 +6,11 @@ import 'package:news_app_r/model/news_response.dart';
 import 'package:news_app_r/model/source_response.dart';
 
 class ApiManager {
-  static Future<SourceResponse?> getSources() async {
-    Uri url = Uri.https(ApiConstants.baseUrl, ApiConstants.sourceApi,
-        {'apiKey': 'c4da88a2e5b241ab96c5ba23faa2b66e'});
+  static Future<SourceResponse?> getSources(String categoryId) async {
+    Uri url = Uri.https(ApiConstants.baseUrl, ApiConstants.sourceApi, {
+      'apiKey': 'c4da88a2e5b241ab96c5ba23faa2b66e',
+      'category':categoryId
+    });
     try {
       var response = await http.get(url);
       String bodyString = response.body;
@@ -21,8 +22,7 @@ class ApiManager {
   }
 
   static Future<NewsResponse?> getNewsBySourceId(String sourceId) async {
-    Uri url = Uri.https(ApiConstants.baseUrl, ApiConstants.newsApi,
-        {'apiKey': 'c4da88a2e5b241ab96c5ba23faa2b66e', 'sources': sourceId});
+    Uri url = Uri.https(ApiConstants.baseUrl, ApiConstants.newsApi, {'apiKey': 'c4da88a2e5b241ab96c5ba23faa2b66e', 'sources': sourceId});
     try {
       var response = await http.get(url);
       String bodyString = response.body;
